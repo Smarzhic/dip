@@ -9,9 +9,9 @@ terraform {
     endpoint   = "storage.yandexcloud.net"
     bucket     = "terraform-object-storage-tutorial"
     region     = "ru-central1"
-    key        = "<./status.tfstate"
-    access_key = "YCAJEoLs55AoyIdrXXK_YyXHs"
-    secret_key = "секретный ключ"
+    key        = "./status.tfstate"
+    access_key = "YCAJEcgl-45pPkALwDL2s72Xw"
+    secret_key = "Секретный ключ"
 
     skip_region_validation      = true
     skip_credentials_validation = true
@@ -25,8 +25,9 @@ provider "yandex" {
   zone      = "ru-central1-a"
 }
 
-resource "yandex_compute_instance" "vm-1" {
-  name = "terraform1"
+resource "yandex_compute_instance" "zhukops" {
+  name     = "zhukops"
+  hostname = "zhukops.ru"
 
   resources {
     cores  = 2
@@ -40,14 +41,166 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
+    subnet_id      = yandex_vpc_subnet.subnet-1.id
+    nat            = true
+    nat_ip_address = "${var.yc_reserved_ip}"
   }
 
   metadata = {
     user-data = "${file("meta.txt")}"
   }
 }
+
+resource "yandex_compute_instance" "db01" {
+  name     = "db01"
+  hostname = "db01.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
+resource "yandex_compute_instance" "db02" {
+  name     = "db02"
+  hostname = "db02.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
+resource "yandex_compute_instance" "app" {
+  name     = "app"
+  hostname = "app.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
+resource "yandex_compute_instance" "gitlab" {
+  name     = "gitlab"
+  hostname = "gitlab.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
+resource "yandex_compute_instance" "runner" {
+  name     = "runner"
+  hostname = "runner.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
+resource "yandex_compute_instance" "monitoring" {
+  name     = "monitoring"
+  hostname = "monitoring.zhukops.ru"
+
+  resources {
+    cores  = 4
+    memory = 4
+  }
+
+  boot_disk {
+    initialize_params {
+      image_id = "fd8fte6bebi857ortlja"
+    }
+  }
+
+  network_interface {
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = false
+  }
+
+  metadata = {
+    user-data = "${file("meta.txt")}"
+  }
+}
+
 resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
@@ -59,6 +212,13 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-output "internal_ip_address_vm_1" {
-  value = yandex_compute_instance.vm-1.network_interface.0.ip_address
+resource "yandex_vpc_subnet" "subnet-2" {
+  name           = "subnet2"
+  zone           = "ru-central1-b"
+  network_id     = yandex_vpc_network.network-1.id
+  v4_cidr_blocks = ["192.168.11.0/24"]
 }
+
+#output "internal_ip_address_zhukops" {
+#  value = yandex_compute_instance.zhukops.network_interface.0.ip_address
+#}
