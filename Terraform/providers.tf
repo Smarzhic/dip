@@ -10,7 +10,7 @@ terraform {
     bucket     = "terraform-object-storage-tutorial"
     region     = "ru-central1"
     key        = "./status.tfstate"
-    access_key = "YCAJE0FAnrONPU7CQzZ6sV2-m"
+    access_key = "YCAJEH0td-Y0KF2tTgwg6rYDx"
     secret_key = "Секрет!"
 
     skip_region_validation      = true
