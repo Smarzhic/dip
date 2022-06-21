@@ -10,7 +10,7 @@
 Манифесты инфраструктуры описаны в каталоге `Terraform`
 
 ## Установка Nginx и LetsEncrypt
-# Необходимо разработать Ansible роль для установки Nginx и LetsEncrypt
+Необходимо разработать Ansible роль для установки Nginx и LetsEncrypt
 
 Роли распологаются в каталоге `Ansible`
 
