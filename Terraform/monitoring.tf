@@ -10,6 +10,7 @@ resource "yandex_compute_instance" "monitoring" {
   boot_disk {
     initialize_params {
       image_id = "fd8fte6bebi857ortlja"
+      size = 6
     }
   }
 
