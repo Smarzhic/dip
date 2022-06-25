@@ -21,5 +21,6 @@ resource "yandex_compute_instance" "zhukops" {
 
   metadata = {
     user-data = "${file("meta.txt")}"
+    ssh-keys  = "ubuntu:${file("id_rsa.pub")}"
   }
 }
