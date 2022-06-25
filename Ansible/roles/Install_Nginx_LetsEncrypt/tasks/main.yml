@@ -6,8 +6,8 @@
 - name: python-simplejson
   raw: apt-get install -y python-simplejson
 
-#- name: Upgrade system
-#  apt: upgrade=dist update_cache=yes
+- name: Upgrade system
+  apt: update_cache=yes
 
 - name: Install nginx
   apt: name=nginx state=latest

@@ -1,4 +1,4 @@
-- hosts: front
+- hosts: MySQL
   gather_facts: true
   become:
     true
@@ -9,5 +9,4 @@
   remote_user:
     smarzhic
   roles:
-   - Install_Nginx_LetsEncrypt
-   - Install_Proxy
+   - Install_MySQL

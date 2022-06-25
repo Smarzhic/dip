@@ -11,7 +11,7 @@ terraform {
     region     = "ru-central1"
     key        = "./status.tfstate"
     access_key = "YCAJEBXuBu0G-gl5pA3uuFnZ6"
-    secret_key = "YCPTz-Newict6xoXa0XbjHlQvPkE4uNfa_7DgimQ"
+    secret_key = "Секрет"
  
 
     skip_region_validation      = true

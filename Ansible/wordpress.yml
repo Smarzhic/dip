@@ -1,0 +1,24 @@
+- hosts: app
+  gather_facts: true
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    smarzhic
+  vars:
+    - mysql_root_password: "SuperP@S$w0rd"
+    - domain: "example.com"
+    - download_url: "http://wordpress.org/latest.tar.gz"
+    - wpdirectory: "/var/www"
+    - db_name: "wordpress"
+    - db_user: "wordpress"
+    - db_password: "wordpress"
+  roles:
+   - nginx
+   - memcached
+   - php5
+   - wordpress
+
