@@ -10,3 +10,4 @@
     smarzhic
   roles:
    - monitoring
+   - Grafana

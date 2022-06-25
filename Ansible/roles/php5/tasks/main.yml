@@ -1,3 +1,4 @@
+---
 - name: install php5
   apt: pkg={{ item }}
   with_items:

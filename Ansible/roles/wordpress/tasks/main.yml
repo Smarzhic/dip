@@ -1,3 +1,4 @@
+---
 - name: creating database
   mysql_db:
     name: "{{ db_name }}"
