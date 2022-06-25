@@ -20,5 +20,6 @@ resource "yandex_compute_instance" "app" {
 
   metadata = {
     user-data = "${file("meta.txt")}"
+    ssh-keys = "sovar:${file("pub")}"
   }
 }

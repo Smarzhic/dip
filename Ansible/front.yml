@@ -1,0 +1,11 @@
+- hosts: front
+  become:
+    true
+  become_method:
+    sudo
+  become_user:
+    root
+  remote_user:
+    smarzhic
+  roles:
+   - Install_Nginx_LetsEncrypt
