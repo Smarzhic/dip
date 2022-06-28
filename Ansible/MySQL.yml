@@ -10,3 +10,7 @@
     smarzhic
   roles:
    - Install_MySQL
+  
+  environment:
+     http_proxy: http://zhukops.ru:8118
+     https_proxy: http://zhukops.ru:8118

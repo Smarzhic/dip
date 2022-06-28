@@ -2,8 +2,8 @@
 zhukops.ru  letsencrypt_email=matrosovde@yandex.ru domain_name=zhukops.ru
 
 [MySQL]
-db01.zhukops.ru
-db02.zhukops.ru
+db01.zhukops.ru mysql_server_id=1 mysql_replication_role=master
+db02.zhukops.ru mysql_server_id=2 mysql_replication_role=slave
 
 [app]
 app.zhukops.ru
@@ -16,3 +16,12 @@ runner.zhukops.ru
 
 [monitoring]
 monitoring.zhukops.ru
+
+[proxy]
+zhukops.ru
+
+[MySQL:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q smarzhic@zhukops.ru"'
+
+[app:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q smarzhic@zhukops.ru"'
