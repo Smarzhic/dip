@@ -10,7 +10,7 @@ resource "yandex_compute_instance" "app" {
   boot_disk {
     initialize_params {
       image_id = "fd8fte6bebi857ortlja"
-      size = 6
+      size     = 6
     }
   }
 
@@ -21,6 +21,6 @@ resource "yandex_compute_instance" "app" {
 
   metadata = {
     user-data = "${file("meta.txt")}"
-    ssh-keys = "sovar:${file("pub")}"
+    ssh-keys  = "sovar:${file("pub")}"
   }
 }

@@ -9,8 +9,8 @@
   remote_user:
     smarzhic
   vars:
-    - mysql_root_password: "SuperP@S$w0rd"
-    - domain: "example.com"
+  #  - mysql_root_password: "SuperP@S$w0rd"
+    - domain: "zhukops.ru"
     - download_url: "http://wordpress.org/latest.tar.gz"
     - wpdirectory: "/var/www"
     - db_name: "wordpress"
@@ -21,4 +21,8 @@
    - memcached
    - php5
    - wordpress
+
+  environment:
+     http_proxy: http://zhukops.ru:8118
+     https_proxy: http://zhukops.ru:8118
 
