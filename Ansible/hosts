@@ -31,3 +31,6 @@ ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q smarzhic@zhukops.ru"'
 
 [gitlab:vars]
 ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q smarzhic@zhukops.ru"'
+
+[runner:vars]
+ansible_ssh_common_args='-o ProxyCommand="ssh -W %h:%p -q smarzhic@zhukops.ru"'
