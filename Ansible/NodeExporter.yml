@@ -9,7 +9,7 @@
   remote_user:
     smarzhic
   roles:
-   - Install-node-exporter
+   - node-exporter
 
   environment:
      http_proxy: http://zhukops.ru:8118
