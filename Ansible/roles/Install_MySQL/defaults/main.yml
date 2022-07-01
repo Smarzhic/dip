@@ -115,9 +115,9 @@ mysql_databases:
 # Users.
 mysql_users: 
    - name: wordpress
-#    host: 0.0.0.0
+     host: '%'
      password: wordpress
-     priv: "*.*:ALL PRIVILEGES"
+     priv: '*.*:ALL PRIVILEGES'
 
    - name: repuser
      password: repuser
