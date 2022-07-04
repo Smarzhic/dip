@@ -1,4 +1,4 @@
- - job_name: "prometheus_node"
+  - job_name: "prometheus_node"
    scrape_interval: 5s
    static_configs:
      - targets: ["localhost:9100"]
