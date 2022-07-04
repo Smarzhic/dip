@@ -54,5 +54,5 @@
     - download_url: "http://wordpress.org/latest.tar.gz"
     - wpdirectory: "/var/www"
 ```
-
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/wp.png)
 
