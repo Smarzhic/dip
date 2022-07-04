@@ -6,7 +6,7 @@
 - Настроено управление DNS для домена `ZHUKOPS.RU`
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/DNS.PNG)  
 
-Созадн S3 bucket YC аккаунте.
+Создан S3 bucket YC аккаунте.
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/s3%20baket.png)  
 
 ## Развертывание инфраструктуры
@@ -23,7 +23,16 @@
 ## Установка Nginx и LetsEncrypt
 Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально необходимая версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков.
 
-- Первым следует выпоолнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину
+- Первым следует выпоолнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Запросит и получит необходимые сертификаты.
+
+
+Для переключения между `stage` и `prod` запросами сертификатов следует отредактировать таски с именем Ansible\roles\Install_Nginx_LetsEncrypt\tasks\main.yml Create letsencrypt certificate, в файле `Ansible\roles\Install_Nginx_LetsEncrypt\tasks\main.yml` добавив или удалив в них ключ `--staging` :
+```
+- name: Create letsencrypt certificate front
+  shell: letsencrypt certonly -n --webroot --staging -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
+  args:
+    creates: /etc/letsencrypt/live/{{ domain_name }}
+```
 
 
 
