@@ -80,6 +80,10 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
 
-Интерфес `Grafana` теперь доступен по https
+Интерфес `Grafana` теперь доступен по https. Данные для входа admin/admin
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanaweb.png)
+
+Перейдя в интерфейс следует указать источник данных - Prometheus
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanprom.png)
