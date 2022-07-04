@@ -74,4 +74,6 @@
 
 - Для установки Gitlab Runner следует выполнить playbook - `Runner`
 
+## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
+Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`.
