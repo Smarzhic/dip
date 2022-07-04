@@ -41,4 +41,18 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/MySQL.png)
 
+Убедимся что репликация настроена и проходит успешно
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/Replica.png)
+
+## Установка WordPress
+
+-  Для установки `WordPress` служит роль `wordpress.ym`. Данная роль устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.ym` так же передаются переменные необходимые для корректной настройки wordpress.
+```
+  vars:
+    - domain: "zhukops.ru"
+    - download_url: "http://wordpress.org/latest.tar.gz"
+    - wpdirectory: "/var/www"
+```
+
 
