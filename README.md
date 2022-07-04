@@ -6,9 +6,17 @@
 - Настроено управление DNS для домена `ZHUKOPS.RU`
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/DNS.PNG)  
 
-## Создание инфраструктуры
+Созадн S3 bucket YC аккаунте.
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/s3%20baket.png)  
 
-Манифесты инфраструктуры описаны в каталоге `Terraform`
+Развертывание инфраструктуры производится командой `terraform apply` из каталога `Terraform` данного репозитория.
+
+- `providers.tf` Содержит настройки для подклчюения к провайдеру.
+- `variables.tf` Содержит переменную с зарезервированным статичным адресом. Данный адрес будет назначаться фронт/бастион инстансу.
+- `network.tf` Содержит настройки сетей.
+- `meta.txt` Содержит перечень пользователей и их открытые ключи которые будут создаваться в виртуальных машинах.
+- `app.tf`, `gitlab.tf`, `monitoring.tf`. `MySQL.tf`, `runner.tf`, `zhukops.tf`.
+
 
 ## Установка Nginx и LetsEncrypt
  - Необходимо разработать Ansible роль для установки Nginx и LetsEncrypt  
