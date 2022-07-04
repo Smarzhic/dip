@@ -1,19 +1,7 @@
 ---
-#- name: creating database
-#  mysql_db:
-#    name: "{{ db_name }}"
-#    state: "present"
-#    login_user: "root"
-#    login_password: "{{ mysql_root_password }}"
+- name: Install git
+  action: apt pkg=git state=present update_cache=true
 
-#- name: creating database user
-#  mysql_user:
-#    name: "{{ db_user }}"
-#    password: "{{ db_password }}"
-#    priv: "{{ db_name }}.*:ALL"
-#    state: "present"
-#   login_user: "root"
-#   login_password: "{{ mysql_root_password }}"
 
 - name: install nginx configuration
   template:

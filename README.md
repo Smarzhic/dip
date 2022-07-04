@@ -17,9 +17,3 @@
  - Необходимо разработать Ansible роль для установки Prometheus, Alert Manager и Grafana
 
 Роли распологаются в каталоге `Ansible`
-
-Для корректной работы WP по HTTPS добавить в конф WP
-```
-define( 'WP_SITEURL', 'https://example.com/blog' );
-define( 'WP_HOME', 'https://example.com/blog' );
-```
