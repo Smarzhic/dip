@@ -51,6 +51,14 @@
   notify:
     - systemd reload
 
+- name: copy node
+  template:
+    src=templates/node.yml
+    dest=/etc/prometheus/
+
+- name: add node
+  shell: 'cat /etc/prometheus/node.yml >> /etc/prometheus/prometheus.yml'
+
 - name: Systemctl Prometheus Start
   systemd:
     name: prometheus
