@@ -56,3 +56,7 @@
 ```
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/wp.png)
 
+Теперь сайт zhukops.ru доступен по https
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/zhukops.png)
+
