@@ -62,7 +62,7 @@
 
 ## Установка Gitlab CE и Gitlab Runner
 
-- Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlub\defaults\main.yml` Выполнение данного плейбука может занять продолжительное время.
+- Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlab\defaults\main.yml` Выполнение данного плейбука может занять продолжительное время.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitlab.png)
 
@@ -92,3 +92,7 @@
 Импортировать шаблоны из каталога `templates_grafana`
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/importdashboard.png)
+
+Теперь на дашборде графаны доступны метрики со всех инстансов
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
