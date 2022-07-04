@@ -34,6 +34,8 @@
     creates: /etc/letsencrypt/live/{{ domain_name }}
 ```
 
+## Установка кластера MySQL
+
 
 
 
