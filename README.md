@@ -87,3 +87,7 @@
 Перейдя в интерфейс следует указать источник данных - Prometheus
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanprom.png)
+
+Импортировать шаблоны из каталога `templates_grafana`
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/importdashboard.png)
