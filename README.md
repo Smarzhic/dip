@@ -79,6 +79,7 @@
 Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\node.yml` указывается перечень хостов которые будут подключены к `Prometheus`.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
 
 Интерфес `Grafana` теперь доступен по https. Данные для входа admin/admin
 
