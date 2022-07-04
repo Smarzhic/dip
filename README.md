@@ -23,7 +23,7 @@
 ## Установка Nginx и LetsEncrypt
 Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально необходимая версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков и переменные для ansible ssh proxy.
 
-- Первым следует выпоолнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Запросит и получит необходимые сертификаты.
+- Первым следует выполнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Запросит и получит необходимые сертификаты.
 
 
 Для переключения между `stage` и `prod` запросами сертификатов следует отредактировать таски с именем  Create letsencrypt certificate, в файле `Ansible\roles\Install_Nginx_LetsEncrypt\tasks\main.yml` добавив или удалив в них ключ `--staging` :
@@ -36,7 +36,7 @@
 
 ## Установка кластера MySQL
 
-- Теперь пора выполнить playbook `MySQL.yml`. В файде `Ansible\roles\Install_MySQL\defaults\main.yml` находятся настройки MySQL кластера. Дополнительно в файле `hosts` передаются переменные для настройки репликации баз  между db01 и db02. 
+- Теперь пора выполнить playbook `MySQL.yml`. В файле `Ansible\roles\Install_MySQL\defaults\main.yml` находятся настройки MySQL кластера. Дополнительно в файле `hosts` передаются переменные для настройки репликации базы  между db01 и db02. 
 
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/MySQL.png)
@@ -47,7 +47,7 @@
 
 ## Установка WordPress
 
--  Для установки `WordPress` служит роль `wordpress.ym`. Данная роль устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.ym` так же передаются переменные необходимые для корректной настройки wordpress.
+-  Для установки `WordPress` служит playbook `wordpress.yml`.  Playbook устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.yml` так же передаются переменные необходимые для корректной настройки wordpress.
 ```
   vars:
     - domain: "zhukops.ru"
@@ -62,7 +62,18 @@
 
 ## Установка Gitlab CE и Gitlab Runner
 
-- Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlub\defaults\main.yml`
+- Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlub\defaults\main.yml` Выполнение данного плейбука может занять продолжительное время.
 
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitlab.png)
 
+Теперь локальный `Gitlab` теперь доступен по https:
 
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitweb.png)
+
+Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"` которая сбросит пароль пользователя root и запросит новый.
+
+- Для установки Gitlab Runner следует выполнить playbook - `Runner`
+
+## Установка Prometheus, Alert Manager, Node Exporter и Grafana
+
+Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\node.yml` указывается перечень хостов которые будут подключены к `Prometheus`.
