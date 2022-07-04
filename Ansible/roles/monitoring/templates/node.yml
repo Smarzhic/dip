@@ -1,12 +1,12 @@
   - job_name: "prometheus_node"
-   scrape_interval: 5s
-   static_configs:
+    scrape_interval: 5s
+    static_configs:
      - targets: ["localhost:9100"]
 
   - job_name: "db02_node"
     scrape_interval: 5s
     static_configs:
-      - targets: ["db02.zhukops.ru:9100"]
+     - targets: ["db02.zhukops.ru:9100"]
 
   - job_name: "db01_node"
     scrape_interval: 5s
@@ -16,7 +16,7 @@
   - job_name: "runner_node"
     scrape_interval: 5s
     static_configs:
-      - targets: ["runner.zhukops.ru:9100"]
+     - targets: ["runner.zhukops.ru:9100"]
 
   - job_name: "zhukops_node"
     scrape_interval: 5s
