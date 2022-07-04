@@ -92,3 +92,7 @@
 Импортировать шаблоны из каталога `templates_grafana`
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/importdashboard.png)
+
+Теперь на дашборде графаны доступны метрики со всех инстансов
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
