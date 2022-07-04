@@ -76,4 +76,4 @@
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
-Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`.
+Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\node.yml` указывается перечень хостов которые будут подключены к `Prometheus`.
