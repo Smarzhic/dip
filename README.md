@@ -4,6 +4,7 @@
 
 - Зарегистрирован домен `ZHUKOPS.RU`
 - Настроено управление DNS для домена `ZHUKOPS.RU`
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/DNS.PNG)  
 
 ## Создание инфраструктуры
 
