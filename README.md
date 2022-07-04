@@ -21,7 +21,7 @@
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/yc.png)
 
 ## Установка Nginx и LetsEncrypt
-Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально необходимая версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков.
+Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально необходимая версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков и переменные для ansible ssh proxy.
 
 - Первым следует выпоолнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Запросит и получит необходимые сертификаты.
 
@@ -36,6 +36,9 @@
 
 ## Установка кластера MySQL
 
+- Теперь пора выполнить playbook `MySQL.yml`. В файде `Ansible\roles\Install_MySQL\defaults\main.yml` находятся настройки MySQL кластера. Дополнительно в файле `hosts` передаются переменные для настройки репликации баз  между db01 и db02. 
 
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/MySQL.png)
 
 
