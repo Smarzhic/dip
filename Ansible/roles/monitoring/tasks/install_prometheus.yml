@@ -51,9 +51,9 @@
   notify:
     - systemd reload
 
-- name: copy node
+- name: copy config
   template:
-    src=templates/node.yml
+    src=templates/prometheus.yml
     dest=/etc/prometheus/
 
 - name: copy alert
@@ -61,8 +61,8 @@
     src=templates/alert.yml
     dest=/etc/prometheus/
 
-- name: add node
-  shell: 'cat /etc/prometheus/node.yml >> /etc/prometheus/prometheus.yml'
+#- name: add node
+#  shell: 'cat /etc/prometheus/node.yml >> /etc/prometheus/prometheus.yml'
 
 - name: Systemctl Prometheus Start
   systemd:
