@@ -56,6 +56,11 @@
     src=templates/node.yml
     dest=/etc/prometheus/
 
+- name: copy alert
+  template:
+    src=templates/alert.yml
+    dest=/etc/prometheus/
+
 - name: add node
   shell: 'cat /etc/prometheus/node.yml >> /etc/prometheus/prometheus.yml'
 
