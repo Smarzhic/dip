@@ -67,38 +67,33 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitlab.png)
 
-Теперь локальный `Gitlab` теперь доступен по https:
+Теперь локальный `Gitlab` доступен по https:
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitweb.png)
 
 Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"` которая сбросит пароль пользователя root и запросит новый.
 
-- Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - можно взять в интерфейсе гитлаба.  
+- Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - его можно взять в интерфейсе гитлаба.  
 
 Если все выполнено выерно Runner подключиться к Gitlab.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/runner.PNG)
 
 
-- Для выполнения задачи деплоя из GitLab  в app.domain.ru была разработан следующая джоба:
+- Для выполнения задачи деплоя из GitLab  в app.zhukops.ru была разработан следующая джоба:
 
 ```
 before_script:
 
   - eval $(ssh-agent -s)
 
- 
   - echo "$ssh_key" | tr -d '\r' | ssh-add -
 
- 
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
 
-
 stages:         
   - deploy
-
-
 
 deploy-job:      
   stage: deploy
@@ -109,20 +104,25 @@ deploy-job:
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru rm -rf /var/www/wordpress/.git
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru sudo chown www-data /var/www/wordpress/ -R
 ```
+
 Для ее корректной работы необходимо наличие переменной с закрытым ключом, по которому осуществляется доступ к целевому серверу. Создадим ее:
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/key.PNG)
 
 Убедимся что данная джоба выполняется верно:
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job2.PNG)
 
-Теперь при комите в репозиторий GitLab изменения будут отправляться на сервер c wordpress(app.zhukops.ru)
+Теперь при комите в репозитории GitLab изменения будут отправляться на сервер c wordpress(app.zhukops.ru)
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
-Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые алерты.
+Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит и настроет `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые алерты.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
 
 Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin
@@ -144,4 +144,5 @@ deploy-job:
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
 
 При выключении одной из машин можно увидть что срабатывает созданный алерт
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/alert.png)
