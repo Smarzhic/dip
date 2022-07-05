@@ -78,6 +78,10 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/runner.PNG)
 
+Убедимся что данная джоба выполняется верно:
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job2.PNG)
+
 - Для выполнения задачи деплоя из GitLab  в app.domain.ru была разработан следующая джоба:
 
 ```
