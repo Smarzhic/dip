@@ -73,6 +73,35 @@
 Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"` которая сбросит пароль пользователя root и запросит новый.
 
 - Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - можно взять в интерфейсе гитлаба.
+- Для выполнения задачи деплоя из GitLab  в app.domain.ru была разработан следующая джоба:
+
+```
+before_script:
+
+  - eval $(ssh-agent -s)
+
+ 
+  - echo "$ssh_key" | tr -d '\r' | ssh-add -
+
+ 
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+
+
+stages:         
+  - deploy
+
+
+
+deploy-job:      
+  stage: deploy
+  script:
+    - echo "Deploying application..." 
+    - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru sudo chown smarzhic /var/www/wordpress/ -R
+    - rsync -vz -e "ssh -o StrictHostKeyChecking=no" ./* smarzhic@app.zhukops.ru:/var/www/wordpress/
+    - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru rm -rf /var/www/wordpress/.git
+    - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru sudo chown www-data /var/www/wordpress/ -R
+```
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
