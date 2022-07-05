@@ -78,9 +78,6 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/runner.PNG)
 
-Убедимся что данная джоба выполняется верно:
->![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
->![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job2.PNG)
 
 - Для выполнения задачи деплоя из GitLab  в app.domain.ru была разработан следующая джоба:
 
@@ -111,6 +108,12 @@ deploy-job:
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru rm -rf /var/www/wordpress/.git
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru sudo chown www-data /var/www/wordpress/ -R
 ```
+
+Убедимся что данная джоба выполняется верно:
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job2.PNG)
+
+Теперь при комите в репозиторий GitLab изменения будут отправляться на сервер c wordpress(app.zhukops.ru)
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
