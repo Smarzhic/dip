@@ -57,7 +57,7 @@
     dest=/etc/prometheus/
 
 - name: copy alert
-  template:
+  copy:
     src=templates/alert.yml
     dest=/etc/prometheus/
 

@@ -1,3 +1,6 @@
+rule_files:
+ - alert.yml
+
   - job_name: "prometheus_node"
     scrape_interval: 5s
     static_configs:
