@@ -48,7 +48,8 @@
 ## Установка WordPress
 
 -  Для установки `WordPress` служит playbook `wordpress.yml`.  Playbook устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.yml` так же передаются переменные необходимые для корректной настройки wordpress.
-```
+
+```yml
   vars:
     - domain: "zhukops.ru"
     - download_url: "http://wordpress.org/latest.tar.gz"
