@@ -16,7 +16,7 @@
 - `variables.tf` Содержит переменную с зарезервированным статичным адресом. Данный адрес будет назначаться фронт/бастион инстансу.
 - `network.tf` Содержит настройки сетей.
 - `meta.txt` Содержит перечень пользователей и их открытые ключи которые будут создаваться в виртуальных машинах.
-- `app.tf`, `gitlab.tf`, `monitoring.tf`. `MySQL.tf`, `runner.tf`, `zhukops.tf` Содержат манифесты для создание виртуальных машин в YC
+- `app.tf`, `gitlab.tf`, `monitoring.tf`. `MySQL.tf`, `runner.tf`, `zhukops.tf` Содержат манифесты для создания виртуальных машин в YC
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/apply.png)
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/yc.png)
 
