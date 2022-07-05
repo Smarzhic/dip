@@ -20,9 +20,9 @@ gitlab_runner_executable: "{{ gitlab_runner_package_name }}"
 gitlab_runner_concurrent: '{{ ansible_processor_vcpus }}'
 
 # GitLab coordinator URL
-gitlab_runner_coordinator_url: 'https://gitlab.com'
+gitlab_runner_coordinator_url: 'http://gitlab.zhukops.ru'
 # GitLab registration token
-gitlab_runner_registration_token: ''
+gitlab_runner_registration_token: 'hPygVzV4cYJfmPmtkD2k'
 
 gitlab_runner_sentry_dsn: ''
 
