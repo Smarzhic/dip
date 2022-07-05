@@ -108,6 +108,8 @@ deploy-job:
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru rm -rf /var/www/wordpress/.git
     - ssh -o StrictHostKeyChecking=no smarzhic@app.zhukops.ru sudo chown www-data /var/www/wordpress/ -R
 ```
+Для ее корректной работы необходимо наличие переменной с закрытым ключом, по которому осуществляется доступ к целевому серверу. Создадим ее:
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/key.PNG)
 
 Убедимся что данная джоба выполняется верно:
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
