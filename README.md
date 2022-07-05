@@ -72,7 +72,12 @@
 
 Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"` которая сбросит пароль пользователя root и запросит новый.
 
-- Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - можно взять в интерфейсе гитлаба.
+- Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - можно взять в интерфейсе гитлаба.  
+
+Если все выполнено выерно Runner подключиться к Gitlab.
+
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/runner.PNG)
+
 - Для выполнения задачи деплоя из GitLab  в app.domain.ru была разработан следующая джоба:
 
 ```
