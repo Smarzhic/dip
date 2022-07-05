@@ -125,7 +125,7 @@ deploy-job:
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
 
-Интерфес `Grafana` теперь доступен по https. Данные для входа admin/admin
+Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanaweb.png)
 
