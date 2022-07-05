@@ -120,7 +120,7 @@ deploy-job:
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
-Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\node.yml` указывается перечень хостов которые будут подключены к `Prometheus`.
+Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые алерты.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
@@ -142,3 +142,6 @@ deploy-job:
 Теперь на дашборде графаны доступны метрики со всех инстансов
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
+
+При выключении одной из машин можно увидть что срабатывает созданный алерт
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/alert.png)
