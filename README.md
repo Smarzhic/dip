@@ -127,6 +127,8 @@ deploy-job:
 
 Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin
 
+>![PID 1](https://github.com/Smarzhic/dip/blob/main/img/prometheus.png)
+
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanaweb.png)
 
 Перейдя в интерфейс следует указать источник данных - Prometheus
