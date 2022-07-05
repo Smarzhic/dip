@@ -146,3 +146,23 @@ deploy-job:
 При выключении одной из машин можно увидть что срабатывает созданный алерт
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/alert.png)
+
+Далее полученный алерт можно отправить например на почту. Для этого необходимо внести изменения в файл конфигурации `/etc/alertmanager/alertmanager.yml` 
+```
+global:
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 10m
+  repeat_interval: 60m
+  receiver: 'email'
+receivers:
+- name: 'email'
+  email_configs:
+  - to: 'адрес_электронной_почты_получателя'
+    from: 'адрес_электронной_почты_отправителя'
+    smarthost: 'SMTP_хост:порт'
+    auth_username: 'имя_пользователя'
+    auth_identity: 'имя_пользователя'
+    auth_password: 'пароль'
+```
