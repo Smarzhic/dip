@@ -6,27 +6,27 @@
 - Настроено управление DNS для домена `ZHUKOPS.RU`
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/DNS.PNG)  
 
-Создан S3 bucket YC аккаунте.
+Создан S3 bucket в YC аккаунте.
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/s3%20baket.png)  
 
 ## Развертывание инфраструктуры
-Развертывание инфраструктуры производится командой `terraform apply` из каталога `Terraform` данного репозитория.
+Развертывание инфраструктуры производится командой `terraform apply` из каталога `Terraform` данного репозитория:
 
-- `providers.tf` Содержит настройки для подклчюения к провайдеру.
-- `variables.tf` Содержит переменную с зарезервированным статичным адресом. Данный адрес будет назначаться фронт/бастион инстансу.
-- `network.tf` Содержит настройки сетей.
-- `meta.txt` Содержит перечень пользователей и их открытые ключи которые будут создаваться в виртуальных машинах.
-- `app.tf`, `gitlab.tf`, `monitoring.tf`. `MySQL.tf`, `runner.tf`, `zhukops.tf` Содержат манифесты для создания виртуальных машин в YC
+- `providers.tf` Содержит настройки для подключения к провайдеру;
+- `variables.tf` Содержит переменную с зарезервированным статичным адресом. Данный адрес будет назначаться фронт/бастион инстансу;
+- `network.tf` Содержит настройки сетей;
+- `meta.txt` Содержит перечень пользователей и их открытые ключи, которые будут создаваться в виртуальных машинах;
+- `app.tf`, `gitlab.tf`, `monitoring.tf`. `MySQL.tf`, `runner.tf`, `zhukops.tf` Содержат манифесты для создания виртуальных машин в YC.
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/apply.png)
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/yc.png)
 
 ## Установка Nginx и LetsEncrypt
-Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально необходимая версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков и переменные для ansible ssh proxy.
+Все необходимые роли находятся в каталоге `Ansible` и разделены по сервисам. Минимально версия `Ansible` 2.9. В файле `hosts` находится inventory для плейбуков и переменные для ansible ssh proxy.
 
-- Первым следует выполнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Запросит и получит необходимые сертификаты.
+- Первым следует выполнить playbook `front.yml`. Он установит и настроит `Nginx`, `LetsEncrypt`, службу `proxy`, `Node_Exporter` на front машину. Далеее запросит и получит необходимые сертификаты.
 
 
-Для переключения между `stage` и `prod` запросами сертификатов следует отредактировать таски с именем  Create letsencrypt certificate, в файле `Ansible\roles\Install_Nginx_LetsEncrypt\tasks\main.yml` добавив или удалив в них флаг `--staging` :
+Для переключения между `stage` и `prod` запросами сертификатов следует отредактировать tasks с именем  `Create letsencrypt certificate` в файле `Ansible\roles\Install_Nginx_LetsEncrypt\tasks\main.yml`, добавив или удалив в них флаг `--staging` :
 ```
 - name: Create letsencrypt certificate front
   shell: letsencrypt certonly -n --webroot --staging -w /var/www/letsencrypt -m {{ letsencrypt_email }} --agree-tos -d {{ domain_name }}
@@ -36,7 +36,7 @@
 
 ## Установка кластера MySQL
 
-- Теперь пора выполнить playbook `MySQL.yml`. В файле `Ansible\roles\Install_MySQL\defaults\main.yml` находятся настройки MySQL кластера. Дополнительно в файле `hosts` передаются переменные для настройки репликации базы  между db01 и db02. 
+Теперь пора выполнить playbook `MySQL.yml`. В файле `Ansible\roles\Install_MySQL\defaults\main.yml` находятся настройки MySQL кластера. Дополнительно в файле `hosts` передаются переменные для настройки репликации базы  между db01 и db02. 
 
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/MySQL.png)
