@@ -119,13 +119,13 @@ deploy-job:
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
-Для настройки данных служб следует использовать playbook `NodeExporter.yml` который установит `Node Exporter` на хосты. А затем Playbook  `monitoring.yml`, он установит и настроит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые alert.
+Для настройки данных служб следует использовать playbook `NodeExporter.yml`, который установит `Node Exporter` на хосты. А затем Playbook  `monitoring.yml`, он установит и настроит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые alert.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
 
-Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin.
+Интерфейс `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/prometheus.png)
 
@@ -139,7 +139,7 @@ deploy-job:
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/importdashboard.png)
 
-Теперь на `dashboard` графаны доступны метрики со всех instans.
+Теперь на `dashboard` Grafana доступны метрики со всех instans.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
 
@@ -147,7 +147,7 @@ deploy-job:
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/alert.png)
 
-Далее, полученный alert можно отправить например на почту. Для этого необходимо внести изменения в файл конфигурации `/etc/alertmanager/alertmanager.yml`:
+Далее, полученный alert можно отправить, например, на почту. Для этого необходимо внести изменения в файл конфигурации `/etc/alertmanager/alertmanager.yml`:
 ```
 global:
 route:
