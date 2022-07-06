@@ -41,13 +41,13 @@
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/MySQL.png)
 
-Убедимся что репликация настроена и проходит успешно
+Убедимся, что репликация настроена и проходит успешно
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/Replica.png)
 
 ## Установка WordPress
 
--  Для установки `WordPress` служит playbook `wordpress.yml`.  Playbook устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.yml` так же передаются переменные необходимые для корректной настройки wordpress.
+Для установки `WordPress` служит playbook `wordpress.yml`.  Playbook устанавливает и настраивает `nginx`, `memcached`, `php5`, `wordpress`. В файле `wordpress.yml` так же передаются переменные, необходимые для корректной настройки wordpress.
 
 ```yml
   vars:
@@ -63,24 +63,24 @@
 
 ## Установка Gitlab CE и Gitlab Runner
 
-- Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlab\defaults\main.yml` Выполнение данного плейбука может занять продолжительное время.
+Для установки Gitlab создан playbook `Gitlab`. Настройки данной роли вынесены в файл `Ansible\roles\Gitlab\defaults\main.yml`. Выполнение данного плейбука может занять продолжительное время.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitlab.png)
 
-Теперь локальный `Gitlab` доступен по https:
+Теперь локальный `Gitlab` доступен по https
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/gitweb.png)
 
-Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"` которая сбросит пароль пользователя root и запросит новый.
+Данные для входа -root/5iveL!fe. Если не удается залогиниться с указанными учетными данными следует на инстансе gitlab.zhukops.ru выполнить команду `sudo gitlab-rake "gitlab:password:reset[root]"`, которая сбросит пароль пользователя root и запросит новый.
 
-- Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` - адрес сервера GitLab а также `gitlab_runner_registration_token` - его можно взять в интерфейсе гитлаба.  
+Для установки Gitlab Runner следует выполнить playbook - `Runner`. В файле `Ansible\roles\gitlab-runner\defaults\main.yml`  необходимо указать `gitlab_runner_coordinator_url` (адрес сервера GitLab), а также `gitlab_runner_registration_token` (его можно узнать в интерфейсе гитлаба).  
 
-Если все выполнено выерно Runner подключиться к Gitlab.
+Если все выполнено верно, Runner подключиться к Gitlab.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/runner.PNG)
 
 
-- Для выполнения задачи деплоя из GitLab  в app.zhukops.ru была разработан следующая джоба:
+Для выполнения задачи деплоя из GitLab  в app.zhukops.ru была разработан следующая job:
 
 ```
 before_script:
@@ -109,45 +109,45 @@ deploy-job:
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/key.PNG)
 
-Убедимся что данная джоба выполняется верно:
+Убедимся, что данная job выполняется верно
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job1.PNG)
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/job2.PNG)
 
-Теперь при комите в репозитории GitLab изменения будут отправляться на сервер c wordpress(app.zhukops.ru)
+Теперь при commit в репозитории GitLab изменения будут отправляться на сервер c wordpress(app.zhukops.ru).
 
 ## Установка Prometheus, Alert Manager, Node Exporter и Grafana
 
-Для настройки данных служб следует использовать плейбуки `NodeExporter.yml` - установит `Node Exporter` на хосты  и `monitoring.yml` - установит и настроет `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые алерты.
+Для настройки данных служб следует использовать playbook `NodeExporter.yml` он установит `Node Exporter` на хосты. Playbook  `monitoring.yml` - установит и настроит `Prometheus`, `Alert Manager` и `Grafana`. В файле `Ansible\roles\monitoring\templates\prometheus.yml` содержаться настройки Prometheus. В файле `Ansible\roles\monitoring\templates\alert.yml` указываются обрабатываемые alert.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/monitoring.png)
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodeexporter.png)
 
-Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin
+Интерфес `Grafana`, `Prometheus` и `alertmanager` теперь доступны по https. Данные для входа в `Grafana` admin/admin.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/prometheus.png)
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanaweb.png)
 
-Перейдя в интерфейс следует указать источник данных - Prometheus
+Перейдя в интерфейс следует указать источник данных - Prometheus.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/grafanprom.png)
 
-Импортировать шаблоны из каталога `templates_grafana`
+Импортировать шаблоны из каталога `templates_grafana`.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/importdashboard.png)
 
-Теперь на дашборде графаны доступны метрики со всех инстансов
+Теперь на `dashboard` графаны доступны метрики со всех instans.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/nodemon.png)
 
-При выключении одной из машин можно увидть что срабатывает созданный алерт
+При выключении одной из машин можно увидеть, что срабатывает созданный alert.
 
 >![PID 1](https://github.com/Smarzhic/dip/blob/main/img/alert.png)
 
-Далее полученный алерт можно отправить например на почту. Для этого необходимо внести изменения в файл конфигурации `/etc/alertmanager/alertmanager.yml` 
+Далее, полученный alert можно отправить например на почту. Для этого необходимо внести изменения в файл конфигурации `/etc/alertmanager/alertmanager.yml`:
 ```
 global:
 route:
